@@ -2,6 +2,7 @@ import * as d3 from "d3";
 import React, { useEffect, useRef, useState } from "react";
 import "./Chart.css";
 
+const option = "intensity";
 const Chart = ({ chartData }) => {
   const d3Chart = useRef();
   // Ref for updating dimention
@@ -26,17 +27,15 @@ const Chart = ({ chartData }) => {
         update.current = true;
       }
     });
-
+    console.log(chartData);
     // Draw chart using the data and updated dimensions
 
     DrawChart(chartData, dimensions);
-  }, [chartData]);
+  }, [chartData, dimensions]);
 
   const margin = { top: 50, right: 30, bottom: 30, left: 60 };
 
   function DrawChart(data, dimensions) {
-    // console.log(dimensions.width, dimensions.height)
-
     const chartwidth =
       parseInt(d3.select("#chart").style("width")) - margin.left - margin.right;
     const chartheight =
